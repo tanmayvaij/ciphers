@@ -16,9 +16,11 @@ void encrypt(char *plainString, int n)
     }
 }
 
-void main()
+int main()
 {
     char plainString[] = "abcdefghijklmnopqrstuvwxyz";
     encrypt(plainString, 5);
     printf("%s", plainString);
+
+    return 0;
 }
