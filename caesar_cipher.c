@@ -7,10 +7,10 @@ void encrypt(char *plainText, int key)
 {
     for (int i = 0; i < strlen(plainText); i++)
     {
-        if (plainText[i] >= 65 && plainText[i] <= 91)
+        if (plainText[i] >= 65 && plainText[i] <= 90)
             plainText[i] = ((plainText[i] - 65 + key) % 26) + 65;
 
-        else if (plainText[i] >= 97 && plainText[i] <= 123)
+        else if (plainText[i] >= 97 && plainText[i] <= 122)
             plainText[i] = ((plainText[i] - 97 + key) % 26) + 97;
     }
 }
@@ -19,10 +19,10 @@ void decrypt(char *cipherText, int key)
 {
     for (int i = 0; i < strlen(cipherText); i++)
     {
-        if (cipherText[i] >= 65 && cipherText[i] <= 91)
+        if (cipherText[i] >= 65 && cipherText[i] <= 90)
             cipherText[i] = ((cipherText[i] - 65 - key + 26) % 26) + 65;
 
-        else if (cipherText[i] >= 97 && cipherText[i] <= 123)
+        else if (cipherText[i] >= 97 && cipherText[i] <= 122)
             cipherText[i] = ((cipherText[i] - 97 - key + 26) % 26) + 97;
     }
 }
