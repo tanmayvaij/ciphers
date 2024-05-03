@@ -1,52 +1,73 @@
-def encrypt(text, key):
+def encrypt(plain_text, key):
 
-    encrypted_text = ""
-    matrix = [ [ "" for _ in range(len(text)) ] for _ in range(key) ]
+    cipher_text = ""
+
+    matrix = [["" for _ in range(len(plain_text))] for _ in range(key)]
+
     j = 0
+    for i in range(len(plain_text)):
 
-    for i in range(len(text)):
-        matrix[j][i] = text[i]
-        if j == key - 1: sign =- 1
-        elif j == 0: sign = 1
+        matrix[j][i] = plain_text[i]
+
+        if j == 0:
+            sign = 1
+        if j == key - 1:
+            sign = -1
+
         j += sign
 
-    for i in range(key):
-        for j in range(len(text)):
-            if (matrix[i][j] != ""): encrypted_text += matrix[i][j]
+    for row in range(key):
+        for col in range(len(plain_text)):
+            cipher_text += matrix[row][col]
 
-    return encrypted_text
+    return cipher_text
 
 
-def decrypt(encrypted_text, key):
-    
-    decrypted_text = ""
-    matrix = [ [ "" for _ in range(len(text)) ] for _ in range(key) ]
+def decrypt(cipher_text, key):
+
+    plain_text = ""
+
+    matrix = [["" for _ in range(len(cipher_text))] for _ in range(key)]
+
     j = 0
+    for i in range(len(cipher_text)):
 
-    for i in range(len(text)):
         matrix[j][i] = "*"
-        if j == key - 1: sign =- 1
-        elif j == 0: sign = 1
+
+        if j == 0:
+            sign = 1
+        if j == key - 1:
+            sign = -1
+
         j += sign
 
     k = 0
-    for i in range(key):
-        for j in range(len(text)):
-            if (matrix[i][j] == "*"):  
-                matrix[i][j] = encrypted_text[k]
-                k+=1
+    for row in range(key):
+        for col in range(len(cipher_text)):
+            if matrix[row][col] == "*":
+                matrix[row][col] = cipher_text[k]
+                k += 1
 
-    l = 0
-    for i in range(len(text)):
-        decrypted_text += matrix[l][i]
-        if l == key - 1: sign =- 1
-        elif l == 0: sign = 1
-        l += sign
+    j = 0
+    for i in range(len(cipher_text)):
 
-    return decrypted_text
+        plain_text += matrix[j][i]
+
+        if j == 0:
+            sign = 1
+        if j == key - 1:
+            sign = -1
+
+        j += sign
+
+    return plain_text
 
 
-text = "GEEKSFORGEEKS"
+plain_text = "GEEKSFORGEEKS"
 key = 3
 
-print(decrypt(encrypt(text, key), key))
+cipher_text = encrypt(plain_text, key)
+print(cipher_text)
+
+decrypted_cipher_text = decrypt(cipher_text, key)
+print(decrypted_cipher_text)

@@ -1,26 +1,28 @@
-def encrypt(text: str, shift: int) -> str:
+def encrypt(plain_text, shift):
 
-    encrypted_text = ""
+    cipher_text = ""
 
-    for letter in text:
-        encrypted_text += chr( (ord(letter) + shift - 65 ) % 26 + 65)
+    for char in plain_text:
+        cipher_text += chr((ord(char) + shift - 65) % 26 + 65)
 
-    return encrypted_text
+    return cipher_text
 
-def decrypt(encrypted_text: str, shift: int) -> str:
 
-    decrypted_text = ""
+def decrypt(cipher_text, shift):
 
-    for letter in encrypted_text:
-        decrypted_text += chr((ord(letter) - shift - 65) % 26 + 65)
-    
-    return decrypted_text
+    plain_text = ""
 
-text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for char in cipher_text:
+        plain_text += chr((ord(char) - shift - 65) % 26 + 65)
+
+    return plain_text
+
+
+plain_text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 shift = 23
 
-encrypted_text = encrypt(text, shift)
-print(encrypted_text)
+cipher_text = encrypt(plain_text, shift)
+print(cipher_text)
 
-decrypted_text = decrypt(encrypted_text, shift)
-print(decrypted_text)
+decrypted_cipher_text = decrypt(cipher_text, shift)
+print(decrypted_cipher_text)

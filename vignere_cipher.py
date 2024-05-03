@@ -1,22 +1,27 @@
-def encrypt(text, key): 
+def encrypt(plain_text, key):
 
-    encrypted_text = ""
+    cipher_text = ""
 
-    for i in range(len(text)):
-        encrypted_text += chr((ord(text[i]) + ord(key[i % len(key) ])) % 26 + 65)
+    for i in range(len(plain_text)):
+        cipher_text += chr((ord(plain_text[i]) + ord(key[i % len(key)])) % 26 + 65)
 
-    return encrypted_text
+    return cipher_text
 
-def decrypt(encrypted_text, key):
 
-    decrypted_text = ""
+def decrypt(cipher_text, key):
+    plain_text = ""
 
-    for i in range(len(encrypted_text)):
-        decrypted_text += chr((ord(encrypted_text[i]) - ord(key[i % len(key) ])) % 26 + 65)
+    for i in range(len(cipher_text)):
+        plain_text += chr((ord(cipher_text[i]) - ord(key[i % len(key)])) % 26 + 65)
 
-    return decrypted_text
+    return plain_text
 
-text = "GEEKSFORGEEKS"
+
+plain_text = "GEEKSFORGEEKS"
 key = "AYUSH"
 
-print(decrypt(encrypt(text, key), key))
+cipher = encrypt(plain_text, key)
+print(cipher)
+
+decrypted_cipher_text = decrypt(cipher, key)
+print(decrypted_cipher_text)
